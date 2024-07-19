@@ -1,0 +1,26 @@
+DROP DATABASE IF EXISTS employee_db;
+
+CREATE DATABASE employee_db;
+
+USE employee_db;
+
+CREATE TABLE department (
+    id INT UNSIGNED AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE role (
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255) UNIQUE NOT NULL,
+    salary DECIMAL UNSIGNED,
+    department_id INT UNSIGNED NOT NULL,
+    FOREIGN KEY (department_id) REFERENCES department(id)
+);
+
+CREATE TABLE employee (
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    first_name VARCHAR(255) UNIQUE NOT NULL,
+    last_name VARCHAR(255) UNIQUE NOT NULL,
+    role_id INT UNSIGNED NOT NULL,
+    FOREIGN KEY (role_id) REFERENCES role(id)
+);
